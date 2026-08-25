@@ -39,22 +39,6 @@ const int animFrameTimeMs = 150;
 bool Debug = false;
 
 
-
-void changeMainShader() {
-    static bool isChanged = false;
-    static auto prevShader = holubiho::ResourceManager::GetShaderProgram("phong");
-    if (holubiho::InputManager::IsKeyPressed(GLFW_KEY_P)) {
-        if (isChanged) return;
-        auto tmp = holubiho::RenderSystem::GetDefaultShader();
-        holubiho::RenderSystem::SetDefaultShader(prevShader);
-        prevShader = tmp;
-        isChanged = true;
-    }
-    else {
-        isChanged = false;
-    }
-}
-
 void CheckInteraction() {
     static bool intChck = false;
     static bool debugChecked = false;
@@ -193,8 +177,6 @@ int main() {
         CheckInteraction();
         scene.UpdateScene();
 
-
-        // changeMainShader();
         holubiho::RenderSystem::UpdateAndDraw(
             scene,
             cameraComp->GetViewMat(),
